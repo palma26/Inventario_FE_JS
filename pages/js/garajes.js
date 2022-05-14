@@ -120,7 +120,7 @@ function action(urlC, data, metodo) {
     })
         .then(function (data) {
             console.log(data);
-        });
+        })
 }
 
 /* 

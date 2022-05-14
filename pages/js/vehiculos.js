@@ -4,6 +4,7 @@ var host = "https://localhost:44308";
 
 //llamada al metodo para mostrar los datos
 getData();
+getGarajes();
 
 //convertir formulario a json
 (function ($) {
@@ -33,7 +34,7 @@ var Vehiculos = [];
 var form = document.getElementById('frmvehiculo');
 
 
-/*metodo utilizado para obtener los deptos almacenados */
+/*metodo utilizado para obtener los vehiculos almacenados */
 function getData() {
     var table = document.getElementById('tbVehiculos')
     fetch(`${host}/api/Vehiculos`).then(res => res.json())
@@ -50,7 +51,7 @@ function getData() {
                     <td>${d.matricula}</td>
                     <td>${d.marca}</td>
                     <td>${d.color}</td>
-                    <td>${d.precio}</td>
+                    <td>${d.precioAlquiler}</td>
                     <td>
                     <div class="dropdown">
                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -75,6 +76,21 @@ function getData() {
 }
 
 
+
+/*metodo utilizado para obtener los vehiculos almacenados */
+function getGarajes() {
+    var garajes = document.getElementById('garajeId')
+    fetch(`${host}/api/garajes`).then(res => res.json())
+        .then(data => {
+            garajes.innerHTML = "<option selected value=''>Seleccione un garaje</option>";
+            for (let d of data) {
+                garajes.innerHTML += `
+                    <option value="${d.idgaraje}">${d.descripcion}</option>
+                `
+            }
+        });
+}
+
 /* toma y envia los datos del formulario */
 form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -82,6 +98,7 @@ form.addEventListener('submit', function (e) {
     var data = $(this).serializeFormJSON();
     data.idvehiculo = parseInt(data.idvehiculo);
 
+    $('#garaje').show();
     var method = "POST";
     var url = `${host}/api/Vehiculos`
     if (data.idvehiculo > 0) {
@@ -106,8 +123,8 @@ function action(urlC, data, metodo) {
             "Content-Type": "application/json"
         }
     }).then(function (response) {
-        console.log(response);
-        if (response.ok) {
+        console.log(response.ok)
+        if (response.ok ===true || response.status !== 404) {
             getData();
             $('#modalCenter').modal('hide');
             $('#hd').text("Success!")
@@ -115,12 +132,15 @@ function action(urlC, data, metodo) {
             $('#showToastPlacement').click();
             return response.json;
         } else {
+            $('#modalCenter').modal('hide');
             $('#hd').text("Error!")
-            $('.toast-body').text("ha ocurrido un error, comuniquese con el administrador!")
+            $('.toast-body').text("ha ocurrido un error, verifique si la matricula o el garaje no han sido asigandos a otro vehiculo")
+            $('#showToastPlacement').click();
         }
     })
-        .then(function (data) {
-            console.log(data);
+
+        .catch((error) => {
+            console.error('Error:', error);
         });
 }
 
@@ -132,6 +152,7 @@ function Editar(i) {
         $('#' + clave).val(Vehiculos[i][clave]);
         console.log(clave + ' ' + Vehiculos[i][clave]);
     }
+    $('#garaje').hide();
     $('#modalCenter').modal('show');
 
 }
@@ -139,7 +160,7 @@ function Editar(i) {
 /* 
     eliminar 
 */
-function MdEliminar(id){
+function MdEliminar(id) {
     $('#mdEliminar').modal('show')
     $('#idvehiculoE').val(id);
 }
@@ -148,15 +169,16 @@ function MdEliminar(id){
 /* 
     limpiar formulario
 */
-function limpiarForm(){
+function limpiarForm() {
     for (var clave in Vehiculos[0]) {
         $('#' + clave).val('');
     }
+    $('#garaje').show();
     $('#idvehiculo').val(0);
 }
 
 
-function Eliminar(){
+function Eliminar() {
     var id = $('#idvehiculoE').val();
     fetch(`${host}/api/Vehiculos/${id}`, {
         method: 'DELETE',
