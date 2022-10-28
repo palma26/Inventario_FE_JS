@@ -1,10 +1,12 @@
 //host
-var host = "https://localhost:44308";
+var host = "http://192.168.10.30/inventario/Inventario/api/";
 
 
 //llamada al metodo para mostrar los datos
 getData();
-getGarajes();
+
+
+
 
 //convertir formulario a json
 (function ($) {
@@ -37,7 +39,7 @@ var form = document.getElementById('frmvehiculo');
 /*metodo utilizado para obtener los vehiculos almacenados */
 function getData() {
     var table = document.getElementById('tbVehiculos')
-    fetch(`${host}/api/Vehiculos`).then(res => res.json())
+    fetch(`${host}Provedores/GetProveedores`).then(res => res.json())
         .then(data => {
             console.log(data);
             var i = 0;
@@ -48,10 +50,9 @@ function getData() {
             for (let d of data) {
                 table.innerHTML += `
                 <tr>
-                    <td>${d.matricula}</td>
-                    <td>${d.marca}</td>
-                    <td>${d.color}</td>
-                    <td>${d.precioAlquiler}</td>
+                    <td>${d.nombre}</td>
+                    <td>${d.nit}</td>
+                    <td>${d.telefono}</td>
                     <td>
                     <div class="dropdown">
                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -61,7 +62,7 @@ function getData() {
                         <a onClick="Editar(${i})" class="dropdown-item" href="javascript:void(0);"
                             ><i class="bx bx-edit-alt me-1"></i> Edit</a
                         >
-                        <a onclick="MdEliminar(${d.idvehiculo})" class="dropdown-item" href="javascript:void(0);"
+                        <a onclick="MdEliminar(${d.id})" class="dropdown-item" href="javascript:void(0);"
                             ><i class="bx bx-trash me-1"></i> Delete</a
                         >
                         </div>
@@ -75,34 +76,18 @@ function getData() {
         });
 }
 
-
-
-/*metodo utilizado para obtener los vehiculos almacenados */
-function getGarajes() {
-    var garajes = document.getElementById('garajeId')
-    fetch(`${host}/api/garajes`).then(res => res.json())
-        .then(data => {
-            garajes.innerHTML = "<option selected value=''>Seleccione un garaje</option>";
-            for (let d of data) {
-                garajes.innerHTML += `
-                    <option value="${d.idgaraje}">${d.descripcion}</option>
-                `
-            }
-        });
-}
-
 /* toma y envia los datos del formulario */
 form.addEventListener('submit', function (e) {
     e.preventDefault();
 
     var data = $(this).serializeFormJSON();
-    data.idvehiculo = parseInt(data.idvehiculo);
 
-    $('#garaje').show();
     var method = "POST";
-    var url = `${host}/api/Vehiculos`
-    if (data.idvehiculo > 0) {
-        method = "PUT";
+    var url = `${host}Provedores/AddProveedor`
+   // alert(data.id)
+    if (data.id > 0) {
+        method = "PATCH";
+        url = `${host}Provedores/UpdateProveedor`
 
     }
 
@@ -148,6 +133,7 @@ function action(urlC, data, metodo) {
     -Metodo utilizado para enviar los datos al formulario
 */
 function Editar(i) {
+   // alert(i);
     for (var clave in Vehiculos[i]) {
         $('#' + clave).val(Vehiculos[i][clave]);
         console.log(clave + ' ' + Vehiculos[i][clave]);
@@ -162,7 +148,7 @@ function Editar(i) {
 */
 function MdEliminar(id) {
     $('#mdEliminar').modal('show')
-    $('#idvehiculoE').val(id);
+    $('#idempresaE').val(id);
 }
 
 
@@ -179,9 +165,9 @@ function limpiarForm() {
 
 
 function Eliminar() {
-    var id = $('#idvehiculoE').val();
-    fetch(`${host}/api/Vehiculos/${id}`, {
-        method: 'DELETE',
+    var id = $('#idempresaE').val();
+    fetch(`${host}Provedores/DeleteProveedor/${id}`, {
+        method: 'PATCH',
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json"
