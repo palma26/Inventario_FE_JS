@@ -6,6 +6,7 @@ var host = "https://localhost:7042/api/";
 //llamada al metodo para mostrar los datos
 getData();
 
+getCategorias();
 //convertir formulario a json
 (function ($) {
     //toma los datos del formulario y los convierte a tipo JSON
@@ -29,7 +30,17 @@ getData();
 
 //variable utilizada para almacenar los Vehiculos 
 var Vehiculos = [];
-
+function getCategorias(){
+    fetch(`${host}Categoria/GetCategorias`).then(res => res.json())
+        .then(data => {
+            console.log(data);
+            
+            for (let d of data) {
+                var opc  = '<option value="'+ d.id+'">'+d.descripcion+'</option>'
+                $('#categoriaId').append(opc)
+            }
+        });
+}
 //variable utilizada para acceder al formulario 
 var form = document.getElementById('frmvehiculo');
 
@@ -37,7 +48,7 @@ var form = document.getElementById('frmvehiculo');
 /*metodo utilizado para obtener los vehiculos almacenados */
 function getData() {
     var table = document.getElementById('tbVehiculos')
-    fetch(`${host}Provedores/GetProveedores`).then(res => res.json())
+    fetch(`${host}Productos/GetProductos`).then(res => res.json())
         .then(data => {
             console.log(data);
             var i = 0;
@@ -48,9 +59,12 @@ function getData() {
             for (let d of data) {
                 table.innerHTML += `
                 <tr>
-                    <td>${d.nombre}</td>
-                    <td>${d.nit}</td>
-                    <td>${d.telefono}</td>
+                    <td>${d.codigo}</td>
+                    <td>${d.descripcion}</td>
+                    <td>${d.costo}</td>
+                    <td>${d.precio}</td>
+                    <td>${d.cantidad}</td>
+                    <td>${d.categoria}</td>
                     <td>
                     <div class="dropdown">
                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -81,11 +95,11 @@ form.addEventListener('submit', function (e) {
     var data = $(this).serializeFormJSON();
 
     var method = "POST";
-    var url = `${host}Provedores/AddProveedor`
+    var url = `${host}Productos/AddProductos`
    // alert(data.id)
     if (data.id > 0) {
         method = "PATCH";
-        url = `${host}Provedores/UpdateProveedor`
+        url = `${host}Productos/UpdateProducto`
 
     }
 
@@ -166,7 +180,7 @@ function limpiarForm() {
 
 function Eliminar() {
     var id = $('#idempresaE').val();
-    fetch(`${host}Provedores/DeleteProveedor/${id}`, {
+    fetch(`${host}Productos/DeleteProductos/${id}`, {
         method: 'PATCH',
         headers: {
             "Accept": "application/json",

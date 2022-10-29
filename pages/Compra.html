@@ -121,11 +121,11 @@
         </a>
     </li>
     <li class="menu-item ">
-      <a href="Compra.html" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-dock-top"></i>
-        <div data-i18n="Account Settings">Compras</div>
-      </a>
-  </li>
+        <a href="Compra.html" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-dock-top"></i>
+          <div data-i18n="Account Settings">Compras</div>
+        </a>
+    </li>
             
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Administracion</span>
@@ -156,50 +156,61 @@
           <div class="content-wrapper my-4">
             <!-- Content -->
 
-            <div class="container-xxl flex-grow-1 container-p-y">
-  
-                <div class="row">
-                  <div class="col-md-12">
-                    <ul  class="nav nav-pills flex-column flex-md-row mb-3 ">
-                      <li class="nav-item">                          
-                         <h4 class="fw-bold"><span class="text-muted fw-light">Mantenimiento /</span> proveedores</h4>
-                      </li>
-                      <li style="margin-left: 91%; margin-top: -3%;" class="nav-item">
-                        <a class="nav-link active"  
-                        data-bs-toggle="modal"
-                        data-bs-target="#modalCenter"
-                        onclick="limpiarForm()"
-                        href="javascript:void(0);"><i class="bx bx-upload me-1"></i> Nuevo</a>
-                      </li>
-                    </ul>
-                    <div class="col-md-12 bg-white rounded  mb-4" style="height: auto; min-height: 60vh;">
-                        <div class="row">                   
-                            <div class="col-12 px-4">
-                                <div class="row">
-                                    <div class="col-12 p-4">
-                                        <input class="form-control" autocomplete="off" placeholder="Buscar"/>
-                                    </div>
-                                    <div class="col-12 px-4">
-                                        <table class="table table-hover">
-                                            <thead>
-                                              <tr class="table-secondary">
-                                                <th class="text-dark">Nombre</th>
-                                                <th class="text-dark">Nit</th>
-                                                <th class="text-dark">Telefono</th>
-                                                <th class="text-dark">Acciones</th>
-                                              </tr>
-                                            </thead>
-                                            <tbody id="tbVehiculos" class="table-border-bottom-0">                                      
-                                            </tbody>
-                                          </table> 
-                                    </div>
-                                </div>
-                            </div>
+            <ul  class="nav nav-pills flex-column flex-md-row mb-3 ">
+                <li class="nav-item">                          
+                   <h4 class="fw-bold"><span class="text-muted fw-light">Creando /</span> Compras</h4>
+                </li>
+              </ul>
+
+            <form id="frmvehiculo">
+                  
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <input hidden id="id" name="id" value="0">
+                            <label for="nameWithTitle" class="form-label">descripcion compra</label>
+                            <input
+                            type="text"
+                            id="descripcion"
+                            name="descripcion"
+                            class="form-control"
+                            placeholder="descripcion"
+                            autocomplete="off"
+                            />
                         </div>
+                        
+                        
                     </div>
-                  </div>
+                    <div class="col mb-3">
+                        <label for="nameWithTitle" class="form-label">proveedor</label>
+                        <select
+                        type="text"
+                        id="proveedorId"
+                        name="proveedorId"
+                        class="form-control"
+                        autocomplete="off"
+                        ></select>
+                    </div>
+                    <div class="col mb-3">
+                        <label for="nameWithTitle" class="form-label">Bodega</label>
+                        <select
+                        type="text"
+                        id="bodegaId"
+                        name="bodegaId"
+                        class="form-control"
+                        autocomplete="off"
+                        ></select>
+                    </div>
+                    </div>
+                    
                 </div>
-              </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+              </form>
             <!-- / Content -->
             
         <!-- Modal -->
@@ -207,7 +218,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalCenterTitle">Datos de proveedores</h5>
+                    <h5 class="modal-title" id="modalCenterTitle">Datos de productos</h5>
                     <button
                     type="button"
                     class="btn-close"
@@ -221,42 +232,72 @@
                     <div class="row">
                         <div class="col mb-3">
                             <input hidden id="id" name="id" value="0">
-                            <label for="nameWithTitle" class="form-label">nombre</label>
+                            <label for="nameWithTitle" class="form-label">codigo</label>
                             <input
                             type="text"
-                            id="nombre"
-                            name="nombre"
+                            id="codigo"
+                            name="codigo"
                             class="form-control"
-                            placeholder="nombre"
+                            placeholder="codigo"
                             autocomplete="off"
                             />
                         </div>
                         <div class="col mb-3">
-                            <label for="nameWithTitle" class="form-label">nit</label>
+                            <label for="nameWithTitle" class="form-label">descripcion</label>
                             <input
                             type="text"
-                            id="nit"
-                            name="nit"
+                            id="descripcion"
+                            name="descripcion"
                             class="form-control"
-                            placeholder="nit"
+                            placeholder="descripcion"
                             autocomplete="off"
                             />
                         </div>
-                        
+                        <div class="col mb-3">
+                            <label for="nameWithTitle" class="form-label">Categoria</label>
+                            <select
+                            type="text"
+                            id="categoriaId"
+                            name="categoriaId"
+                            class="form-control"
+                            autocomplete="off"
+                            ></select>
+                        </div>
                     </div>
                     <div class="row">
                       <div class="col mb-3">
-                        <label for="nameWithTitle" class="form-label">telefono</label>
+                        <label for="nameWithTitle" class="form-label">cantidad</label>
                         <input
                         type="text"
-                        id="telefono"
-                        name="telefono"
+                        id="cantidad"
+                        name="cantidad"
                         class="form-control"
-                        placeholder="telefono"
+                        placeholder="cantidad"
                         autocomplete="off"
                         />
                     </div>
-                    
+                    <div class="col mb-3">
+                        <label for="nameWithTitle" class="form-label">costo</label>
+                        <input
+                        type="text"
+                        id="costo"
+                        name="costo"
+                        class="form-control"
+                        placeholder="costo"
+                        autocomplete="off"
+                        />
+                    </div>
+                    <div class="col mb-3">
+                        <label for="nameWithTitle" class="form-label">precio</label>
+                        <input
+                        type="text"
+                        id="precio"
+                        name="precio"
+                        class="form-control"
+                        placeholder="precio"
+                        autocomplete="off"
+                        />
+                    </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -506,7 +547,7 @@
     <!-- Page JS -->
     <script src="../assets/js/dashboards-analytics.js"></script>
 
-    <script src="./js/proveedores.js"></script>
+    <script src="./js/Compra.js"></script>
     <script src="./ui/toast.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->

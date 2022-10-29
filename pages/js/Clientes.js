@@ -37,7 +37,7 @@ var form = document.getElementById('frmvehiculo');
 /*metodo utilizado para obtener los vehiculos almacenados */
 function getData() {
     var table = document.getElementById('tbVehiculos')
-    fetch(`${host}Provedores/GetProveedores`).then(res => res.json())
+    fetch(`${host}Clientes/GetClientes`).then(res => res.json())
         .then(data => {
             console.log(data);
             var i = 0;
@@ -81,11 +81,11 @@ form.addEventListener('submit', function (e) {
     var data = $(this).serializeFormJSON();
 
     var method = "POST";
-    var url = `${host}Provedores/AddProveedor`
+    var url = `${host}Clientes/AddCliente`
    // alert(data.id)
     if (data.id > 0) {
         method = "PATCH";
-        url = `${host}Provedores/UpdateProveedor`
+        url = `${host}Clientes/UpdateCliente`
 
     }
 
@@ -166,7 +166,7 @@ function limpiarForm() {
 
 function Eliminar() {
     var id = $('#idempresaE').val();
-    fetch(`${host}Provedores/DeleteProveedor/${id}`, {
+    fetch(`${host}Clientes/DeleteCliente/${id}`, {
         method: 'PATCH',
         headers: {
             "Accept": "application/json",
