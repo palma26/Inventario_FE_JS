@@ -1,6 +1,7 @@
 //host
-var host = "http://192.168.10.30/inventario/Inventario/api/";
+//var host = "http://192.168.10.30/inventario/Inventario/api/";
 
+var host = "https://localhost:7042/api/";
 
 //llamada al metodo para mostrar los datos
 getData();

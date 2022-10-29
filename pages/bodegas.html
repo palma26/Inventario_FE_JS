@@ -131,7 +131,7 @@
                   <div class="col-md-12">
                     <ul  class="nav nav-pills flex-column flex-md-row mb-3 ">
                       <li class="nav-item">                          
-                         <h4 class="fw-bold"><span class="text-muted fw-light">Mantenimiento /</span> Sucursales</h4>
+                         <h4 class="fw-bold"><span class="text-muted fw-light">Mantenimiento /</span> Bodegas</h4>
                       </li>
                       <li style="margin-left: 91%; margin-top: -3%;" class="nav-item">
                         <a class="nav-link active"  
@@ -152,10 +152,8 @@
                                         <table class="table table-hover">
                                             <thead>
                                               <tr class="table-secondary">
-                                                <th class="text-dark">Nombre</th>
-                                                <th class="text-dark">Empresa</th>
-                                                <th class="text-dark">Direccion</th>
-                                                <th class="text-dark">Telefono</th>
+                                                <th class="text-dark">Bodega</th>
+                                                <th class="text-dark">Sucursal</th>
                                                 <th class="text-dark">Acciones</th>
                                               </tr>
                                             </thead>
@@ -177,7 +175,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalCenterTitle">Datos de la Sucursal</h5>
+                    <h5 class="modal-title" id="modalCenterTitle">Datos de la Bodega</h5>
                     <button
                     type="button"
                     class="btn-close"
@@ -194,48 +192,25 @@
                             <label for="nameWithTitle" class="form-label">Nombre</label>
                             <input
                             type="text"
-                            id="nombre"
-                            name="nombre"
+                            id="descripcion"
+                            name="descripcion"
                             class="form-control"
                             placeholder="nombre"
                             autocomplete="off"
                             />
                         </div>
                         <div class="col mb-3">
-                            <label for="nameWithTitle" class="form-label">Empresa</label>
+                            <label for="nameWithTitle" class="form-label">Sucursal</label>
                             <select
                             type="text"
-                            id="empresaId"
-                            name="empresaId"
+                            id="sucursalId"
+                            name="sucursalId"
                             class="form-control"
                             autocomplete="off"
                             ></select>
                         </div>
                     </div>
-                    <div class="row">
-                      <div class="col mb-3">
-                        <label for="nameWithTitle" class="form-label">Direccion</label>
-                        <input
-                        type="text"
-                        id="direccion"
-                        name="direccion"
-                        class="form-control"
-                        placeholder="direccion"
-                        autocomplete="off"
-                        />
-                    </div>
-                    <div class="col mb-3">
-                        <label for="nameWithTitle" class="form-label">Telefono</label>
-                        <input
-                        type="text"
-                        id="telefono"
-                        name="telefono"
-                        class="form-control"
-                        placeholder="telefono"
-                        autocomplete="off"
-                        />
-                    </div>
-                    </div>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
@@ -489,7 +464,7 @@
     <!-- Page JS -->
     <script src="../assets/js/dashboards-analytics.js"></script>
 
-    <script src="./js/sucursales.js"></script>
+    <script src="./js/bodegas.js"></script>
     <script src="./ui/toast.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->

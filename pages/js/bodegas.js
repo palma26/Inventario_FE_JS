@@ -1,10 +1,12 @@
 //host
-var host = "https://localhost:44308";
+//var host = "http://192.168.10.30/inventario/Inventario/api/";
 
+var host = "https://localhost:7042/api/";
 
 //llamada al metodo para mostrar los datos
 getData();
 
+getSucursales();
 //convertir formulario a json
 (function ($) {
     //toma los datos del formulario y los convierte a tipo JSON
@@ -26,30 +28,39 @@ getData();
     };
 })(jQuery);
 
-//variable utilizada para almacenar los garajes 
-var garajes = [];
-
+//variable utilizada para almacenar los Vehiculos 
+var Vehiculos = [];
+function getSucursales(){
+    fetch(`${host}Sucursales/GetSucursales`).then(res => res.json())
+        .then(data => {
+            console.log(data);
+            
+            for (let d of data) {
+                var opc  = '<option value="'+ d.id+'">'+d.nombre+'</option>'
+                $('#sucursalId').append(opc)
+            }
+        });
+}
 //variable utilizada para acceder al formulario 
-var form = document.getElementById('frmGaraje');
+var form = document.getElementById('frmvehiculo');
 
 
-/*metodo utilizado para obtener los deptos almacenados */
+/*metodo utilizado para obtener los vehiculos almacenados */
 function getData() {
-    var table = document.getElementById('tbGarajes')
-    fetch(`${host}/api/garajes`).then(res => res.json())
+    var table = document.getElementById('tbVehiculos')
+    fetch(`${host}Bodegas/GetBodegas`).then(res => res.json())
         .then(data => {
             console.log(data);
             var i = 0;
             var e = 0;
             var count = 1;
-            garajes = data;
+            Vehiculos = data;
             table.innerHTML = ""
             for (let d of data) {
                 table.innerHTML += `
                 <tr>
-                    <td>${count}</td>
                     <td>${d.descripcion}</td>
-                    <td><span class="badge bg-label-primary me-1">${d.estado}</span></td>
+                    <td>${d.nombreSucursal}</td>
                     <td>
                     <div class="dropdown">
                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -59,7 +70,7 @@ function getData() {
                         <a onClick="Editar(${i})" class="dropdown-item" href="javascript:void(0);"
                             ><i class="bx bx-edit-alt me-1"></i> Edit</a
                         >
-                        <a onclick="MdEliminar(${d.idgaraje})" class="dropdown-item" href="javascript:void(0);"
+                        <a onclick="MdEliminar(${d.id})" class="dropdown-item" href="javascript:void(0);"
                             ><i class="bx bx-trash me-1"></i> Delete</a
                         >
                         </div>
@@ -73,18 +84,18 @@ function getData() {
         });
 }
 
-
 /* toma y envia los datos del formulario */
 form.addEventListener('submit', function (e) {
     e.preventDefault();
 
     var data = $(this).serializeFormJSON();
-    data.idgaraje = parseInt(data.idgaraje);
 
     var method = "POST";
-    var url = `${host}/api/garajes`
-    if (data.idgaraje > 0) {
-        method = "PUT";
+    var url = `${host}Bodegas/AddBodega`
+   // alert(data.id)
+    if (data.id > 0) {
+        method = "PATCH";
+        url = `${host}Bodegas/UpdateBodega`
 
     }
 
@@ -105,32 +116,38 @@ function action(urlC, data, metodo) {
             "Content-Type": "application/json"
         }
     }).then(function (response) {
-        console.log(response);
-        if (response.ok) {
+        console.log(response.ok)
+        if (response.ok ===true || response.status !== 404) {
             getData();
             $('#modalCenter').modal('hide');
             $('#hd').text("Success!")
             $('.toast-body').text("Datos agregados exitosamente!")
             $('#showToastPlacement').click();
+            $('#id').val(0)
             return response.json;
         } else {
+            $('#modalCenter').modal('hide');
             $('#hd').text("Error!")
-            $('.toast-body').text("ha ocurrido un error, comuniquese con el administrador!")
+            $('.toast-body').text("ha ocurrido un error")
+            $('#showToastPlacement').click();
         }
     })
-        .then(function (data) {
-            console.log(data);
-        })
+
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 }
 
 /* 
     -Metodo utilizado para enviar los datos al formulario
 */
 function Editar(i) {
-    for (var clave in garajes[i]) {
-        $('#' + clave).val(garajes[i][clave]);
-        console.log(clave + ' ' + garajes[i][clave]);
+   // alert(i);
+    for (var clave in Vehiculos[i]) {
+        $('#' + clave).val(Vehiculos[i][clave]);
+        console.log(clave + ' ' + Vehiculos[i][clave]);
     }
+    $('#garaje').hide();
     $('#modalCenter').modal('show');
 
 }
@@ -138,27 +155,29 @@ function Editar(i) {
 /* 
     eliminar 
 */
-function MdEliminar(id){
+function MdEliminar(id) {
     $('#mdEliminar').modal('show')
-    $('#idgarajeE').val(id);
+    $('#idempresaE').val(id);
 }
 
 
 /* 
     limpiar formulario
 */
-function limpiarForm(){
-    for (var clave in garajes[0]) {
+function limpiarForm() {
+    for (var clave in Vehiculos[0]) {
         $('#' + clave).val('');
     }
-    $('#idgaraje').val(0);
+    $('#garaje').show();
+    $('#id').val(0);
+    $('#idvehiculo').val(0);
 }
 
 
-function Eliminar(){
-    var id = $('#idgarajeE').val();
-    fetch(`${host}/api/garajes/${id}`, {
-        method: 'DELETE',
+function Eliminar() {
+    var id = $('#idempresaE').val();
+    fetch(`${host}Bodegas/DeleteBodega/${id}`, {
+        method: 'PATCH',
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json"
@@ -171,6 +190,7 @@ function Eliminar(){
             $('#hd').text("Success!")
             $('.toast-body').text("Datos agregados exitosamente!")
             $('#showToastPlacement').click();
+            
             return response.json;
         } else {
             $('#hd').text("Error!")

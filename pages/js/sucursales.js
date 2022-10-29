@@ -1,6 +1,7 @@
 //host
-var host = "http://192.168.10.30/inventario/Inventario/api/";
+//var host = "http://192.168.10.30/inventario/Inventario/api/";
 
+var host = "https://localhost:7042/api/";
 
 //llamada al metodo para mostrar los datos
 getData();
@@ -129,7 +130,7 @@ function action(urlC, data, metodo) {
         } else {
             $('#modalCenter').modal('hide');
             $('#hd').text("Error!")
-            $('.toast-body').text("ha ocurrido un error, verifique si la matricula o el garaje no han sido asigandos a otro vehiculo")
+            $('.toast-body').text("ha ocurrido un error")
             $('#showToastPlacement').click();
         }
     })
