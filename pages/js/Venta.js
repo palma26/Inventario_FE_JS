@@ -6,9 +6,9 @@ var host = "https://localhost:7042/api/";
 //llamada al metodo para mostrar los datos
 getData();
 
-getBodegas();
+getClientes();
 
-getCategorias();
+GetProductos();
 //convertir formulario a json
 (function ($) {
     //toma los datos del formulario y los convierte a tipo JSON
@@ -32,30 +32,31 @@ getCategorias();
 
 //variable utilizada para almacenar los Vehiculos 
 var Vehiculos = [];
-function getCategorias(){
-    fetch(`${host}Provedores/GetProveedores`).then(res => res.json())
-        .then(data => {
-            console.log(data);
-            
-            for (let d of data) {
-                var opc  = '<option value="'+ d.id+'">'+d.nombre+'</option>'
-                $('#proveedorId').append(opc)
-            }
-        });
-}
-
-var Vehiculos = [];
-function getBodegas(){
-    fetch(`${host}Bodegas/GetBodegas`).then(res => res.json())
+function GetProductos(){
+    fetch(`${host}Productos/GetProductos`).then(res => res.json())
         .then(data => {
             console.log(data);
             
             for (let d of data) {
                 var opc  = '<option value="'+ d.id+'">'+d.descripcion+'</option>'
-                $('#bodegaId').append(opc)
+                $('#idProducto').append(opc)
             }
         });
 }
+
+var Vehiculos = [];
+function getClientes(){
+    fetch(`${host}Clientes/GetClientes`).then(res => res.json())
+        .then(data => {
+            console.log(data);
+            
+            for (let d of data) {
+                var opc  = '<option value="'+ d.id+'">'+d.nombre+'</option>'
+                $('#clienteId').append(opc)
+            }
+        });
+}
+
 //variable utilizada para acceder al formulario 
 var form = document.getElementById('frmvehiculo');
 
@@ -110,7 +111,7 @@ form.addEventListener('submit', function (e) {
     var data = $(this).serializeFormJSON();
 
     var method = "POST";
-    var url = `${host}Compras/AddCompra`
+    var url = `${host}Ventas/AddVenta`
    // alert(data.id)
     
     action(url, data, method);

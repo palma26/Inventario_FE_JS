@@ -97,47 +97,48 @@
             </li>
 
             <li class="menu-item ">
-                <a href="Categoria.html" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                  <div data-i18n="Account Settings">Categorias</div>
-                </a>
-            </li>
-            <li class="menu-item ">
-              <a href="Productos.html" class="menu-link">
+              <a href="Categoria.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div data-i18n="Account Settings">Productos</div>
+                <div data-i18n="Account Settings">Categorias</div>
               </a>
           </li>
           <li class="menu-item ">
-            <a href="proveedores.html" class="menu-link">
+            <a href="Productos.html" class="menu-link">
               <i class="menu-icon tf-icons bx bx-dock-top"></i>
-              <div data-i18n="Account Settings">proveedores</div>
+              <div data-i18n="Account Settings">Productos</div>
             </a>
         </li>
         <li class="menu-item ">
-          <a href="Clientes.html" class="menu-link">
+          <a href="proveedores.html" class="menu-link">
             <i class="menu-icon tf-icons bx bx-dock-top"></i>
-            <div data-i18n="Account Settings">Clientes</div>
+            <div data-i18n="Account Settings">proveedores</div>
           </a>
       </li>
       <li class="menu-item ">
+        <a href="Clientes.html" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-dock-top"></i>
+          <div data-i18n="Account Settings">Clientes</div>
+        </a>
+    </li>
+    <li class="menu-item ">
         <a href="Compra.html" class="menu-link">
           <i class="menu-icon tf-icons bx bx-dock-top"></i>
           <div data-i18n="Account Settings">Compras</div>
         </a>
-     </li>
-     <li class="menu-item ">
-      <a href="Venta.html" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-dock-top"></i>
-        <div data-i18n="Account Settings">Ventas</div>
-      </a>
-  </li>
+    </li>
+    <li class="menu-item ">
+        <a href="Venta.html" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-dock-top"></i>
+          <div data-i18n="Account Settings">Ventas</div>
+        </a>
+    </li>
             
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Administracion</span>
               </li>
               
-              <li class="menu-header small text-uppercase">
+            
+            <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Reportes</span>
               </li>
               <li class="menu-item ">
@@ -168,45 +169,95 @@
           <div class="content-wrapper my-4">
             <!-- Content -->
 
-            <div class="container-xxl flex-grow-1 container-p-y">
-  
-                <div class="row">
-                  <div class="col-md-12">
-                    <ul  class="nav nav-pills flex-column flex-md-row mb-3 ">
-                      <li class="nav-item">                          
-                         <h4 class="fw-bold"><span class="text-muted fw-light">Mantenimiento /</span> Categorias</h4>
-                      </li>
-                      <li style="margin-left: 91%; margin-top: -3%;" class="nav-item">
-                        <a class="nav-link active"  
-                        data-bs-toggle="modal"
-                        data-bs-target="#modalCenter"
-                        onclick="limpiarForm()"
-                        href="javascript:void(0);"><i class="bx bx-upload me-1"></i> Nuevo</a>
-                      </li>
-                    </ul>
-                    <div class="col-md-12 bg-white rounded  mb-4" style="height: auto; min-height: 60vh;">
-                        <div class="row">                   
-                            <div class="col-12 px-4">
-                                <div class="row">
-                                    <div class="col-12 px-4">
-                                        <table class="table table-hover">
-                                            <thead>
-                                              <tr class="table-secondary">
-                                                <th class="text-dark">descripcion</th>
-                                                <th class="text-dark">Acciones</th>
-                                              </tr>
-                                            </thead>
-                                            <tbody id="tbVehiculos" class="table-border-bottom-0">                                      
-                                            </tbody>
-                                          </table> 
-                                    </div>
-                                </div>
-                            </div>
+            <ul  class="nav nav-pills flex-column flex-md-row mb-3 ">
+                <li class="nav-item">                          
+                   <h4 class="fw-bold"><span class="text-muted fw-light">Creando /</span> Ventas</h4>
+                </li>
+              </ul>
+
+            <form id="frmvehiculo">
+                  
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <input hidden id="id" name="id" value="0">
+                            <label for="nameWithTitle" class="form-label">descripcion venta</label>
+                            <input
+                            type="text"
+                            id="descripcion"
+                            name="descripcion"
+                            class="form-control"
+                            placeholder="descripcion"
+                            autocomplete="off"
+                            />
                         </div>
+                        <div class="col mb-3">
+                            <label for="nameWithTitle" class="form-label">Precio</label>
+                            <input
+                            type="text"
+                            id="precio"
+                            name="precio"
+                            class="form-control"
+                            placeholder="precio"
+                            autocomplete="off"
+                            />
+                        </div>
+                        <div class="col mb-3">
+                            <label for="nameWithTitle" class="form-label">Cantidad</label>
+                            <input
+                            type="text"
+                            id="cantidad"
+                            name="cantidad"
+                            class="form-control"
+                            placeholder="cantidad"
+                            autocomplete="off"
+                            />
+                        </div>
+                        
                     </div>
-                  </div>
+                    <div class="col mb-3">
+                        <label for="nameWithTitle" class="form-label">Producto</label>
+                        <select
+                        type="text"
+                        id="idProducto"
+                        name="idProducto"
+                        class="form-control"
+                        autocomplete="off"
+                        ></select>
+                    </div>
+                    <div class="col mb-3">
+                        <label for="nameWithTitle" class="form-label">Cliente</label>
+                        <select
+                        type="text"
+                        id="clienteId"
+                        name="clienteId"
+                        class="form-control"
+                        autocomplete="off"
+                        ></select>
+                    </div>
+                    <div class="col mb-3">
+                        <label for="nameWithTitle" class="form-label">Tipo pago</label>
+                        <select 
+                        type="text"
+                        id="tipoPago"
+                        name="tipoPago"
+                        class="form-control"
+                        autocomplete="off"
+                        >
+                        <option value="credito">credito</option>
+                        <option value="debito">debito</option>
+                      </select>
+                    </div>
+                    </div>
+                    
                 </div>
-              </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+              </form>
             <!-- / Content -->
             
         <!-- Modal -->
@@ -214,7 +265,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalCenterTitle">Datos de la Categoria</h5>
+                    <h5 class="modal-title" id="modalCenterTitle">Datos de productos</h5>
                     <button
                     type="button"
                     class="btn-close"
@@ -228,18 +279,73 @@
                     <div class="row">
                         <div class="col mb-3">
                             <input hidden id="id" name="id" value="0">
+                            <label for="nameWithTitle" class="form-label">codigo</label>
+                            <input
+                            type="text"
+                            id="codigo"
+                            name="codigo"
+                            class="form-control"
+                            placeholder="codigo"
+                            autocomplete="off"
+                            />
+                        </div>
+                        <div class="col mb-3">
                             <label for="nameWithTitle" class="form-label">descripcion</label>
                             <input
                             type="text"
                             id="descripcion"
                             name="descripcion"
                             class="form-control"
-                            placeholder="nombre"
+                            placeholder="descripcion"
                             autocomplete="off"
                             />
                         </div>
+                        <div class="col mb-3">
+                            <label for="nameWithTitle" class="form-label">Categoria</label>
+                            <select
+                            type="text"
+                            id="categoriaId"
+                            name="categoriaId"
+                            class="form-control"
+                            autocomplete="off"
+                            ></select>
+                        </div>
                     </div>
-                    
+                    <div class="row">
+                      <div class="col mb-3">
+                        <label for="nameWithTitle" class="form-label">cantidad</label>
+                        <input
+                        type="text"
+                        id="cantidad"
+                        name="cantidad"
+                        class="form-control"
+                        placeholder="cantidad"
+                        autocomplete="off"
+                        />
+                    </div>
+                    <div class="col mb-3">
+                        <label for="nameWithTitle" class="form-label">costo</label>
+                        <input
+                        type="text"
+                        id="costo"
+                        name="costo"
+                        class="form-control"
+                        placeholder="costo"
+                        autocomplete="off"
+                        />
+                    </div>
+                    <div class="col mb-3">
+                        <label for="nameWithTitle" class="form-label">precio</label>
+                        <input
+                        type="text"
+                        id="precio"
+                        name="precio"
+                        class="form-control"
+                        placeholder="precio"
+                        autocomplete="off"
+                        />
+                    </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
@@ -257,7 +363,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalCenterTitle">Eliminar Empresa</h5>
+                    <h5 class="modal-title" id="modalCenterTitle">Eliminar Sucursal</h5>
                     <button
                     type="button"
                     class="btn-close"
@@ -270,7 +376,7 @@
                       <div class="row">
                           <input id="idempresaE" name="idempresaE" value="0" hidden/>
                           <div class="col mb-3">
-                             <p>Esta seguro que desea eliminar esta Categoria?</p>
+                             <p>Esta seguro que desea eliminar esta sucursal?</p>
                           </div>
                       </div>
                   </div>
@@ -417,11 +523,6 @@
                         <div class="toast-body">
                           ads
                       </div>
-        
-                      
-        
-        
-        
                       <div
                         class="bs-toast toast fade show bg-danger"
                         role="alert"
@@ -493,7 +594,7 @@
     <!-- Page JS -->
     <script src="../assets/js/dashboards-analytics.js"></script>
 
-    <script src="./js/Categorias.js"></script>
+    <script src="./js/Venta.js"></script>
     <script src="./ui/toast.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->

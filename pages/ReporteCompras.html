@@ -97,68 +97,68 @@
             </li>
 
             <li class="menu-item ">
-                <a href="Categoria.html" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                  <div data-i18n="Account Settings">Categorias</div>
-                </a>
-            </li>
-            <li class="menu-item ">
-              <a href="Productos.html" class="menu-link">
+              <a href="Categoria.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div data-i18n="Account Settings">Productos</div>
+                <div data-i18n="Account Settings">Categorias</div>
               </a>
           </li>
           <li class="menu-item ">
-            <a href="proveedores.html" class="menu-link">
+            <a href="Productos.html" class="menu-link">
               <i class="menu-icon tf-icons bx bx-dock-top"></i>
-              <div data-i18n="Account Settings">proveedores</div>
+              <div data-i18n="Account Settings">Productos</div>
             </a>
         </li>
         <li class="menu-item ">
-          <a href="Clientes.html" class="menu-link">
+          <a href="proveedores.html" class="menu-link">
             <i class="menu-icon tf-icons bx bx-dock-top"></i>
-            <div data-i18n="Account Settings">Clientes</div>
+            <div data-i18n="Account Settings">proveedores</div>
           </a>
       </li>
       <li class="menu-item ">
-        <a href="Compra.html" class="menu-link">
+        <a href="Clientes.html" class="menu-link">
           <i class="menu-icon tf-icons bx bx-dock-top"></i>
-          <div data-i18n="Account Settings">Compras</div>
+          <div data-i18n="Account Settings">Clientes</div>
         </a>
-     </li>
-     <li class="menu-item ">
-      <a href="Venta.html" class="menu-link">
+    </li>
+    <li class="menu-item ">
+      <a href="Compra.html" class="menu-link">
         <i class="menu-icon tf-icons bx bx-dock-top"></i>
-        <div data-i18n="Account Settings">Ventas</div>
+        <div data-i18n="Account Settings">Compras</div>
       </a>
   </li>
+  <li class="menu-item ">
+    <a href="Venta.html" class="menu-link">
+      <i class="menu-icon tf-icons bx bx-dock-top"></i>
+      <div data-i18n="Account Settings">Ventas</div>
+    </a>
+</li>
             
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Administracion</span>
               </li>
               
-              <li class="menu-header small text-uppercase">
-                <span class="menu-header-text">Reportes</span>
-              </li>
-              <li class="menu-item ">
-                  <a href="ReporteCompras.html" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                    <div data-i18n="Account Settings">Reporte Compras</div>
-                  </a>
-              </li>
-              <li class="menu-item">
-                <a href="NotasCredito.html" class="menu-link">
+            <li class="menu-header small text-uppercase">
+              <span class="menu-header-text">Reportes</span>
+            </li>
+            <li class="menu-item ">
+                <a href="ReporteCompras.html" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                  <div data-i18n="Account Settings">Reporte Notas credito</div>
-                </a>
-              </li>
-              <li class="menu-item">
-                <a href="NotasDebito.html" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                  <div data-i18n="Account Settings">Reporte Notas Debito</div>
+                  <div data-i18n="Account Settings">Reporte Compras</div>
                 </a>
             </li>
-         
+            <li class="menu-item">
+              <a href="NotasCredito.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <div data-i18n="Account Settings">Reporte Notas credito</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="NotasDebito.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <div data-i18n="Account Settings">Reporte Notas Debito</div>
+              </a>
+          </li>
+            
           </ul>
         </aside>
         <!-- / Menu -->
@@ -174,15 +174,9 @@
                   <div class="col-md-12">
                     <ul  class="nav nav-pills flex-column flex-md-row mb-3 ">
                       <li class="nav-item">                          
-                         <h4 class="fw-bold"><span class="text-muted fw-light">Mantenimiento /</span> Categorias</h4>
+                         <h4 class="fw-bold"><span class="text-muted fw-light">REPORTE /</span> COMPRAS</h4>
                       </li>
-                      <li style="margin-left: 91%; margin-top: -3%;" class="nav-item">
-                        <a class="nav-link active"  
-                        data-bs-toggle="modal"
-                        data-bs-target="#modalCenter"
-                        onclick="limpiarForm()"
-                        href="javascript:void(0);"><i class="bx bx-upload me-1"></i> Nuevo</a>
-                      </li>
+                      
                     </ul>
                     <div class="col-md-12 bg-white rounded  mb-4" style="height: auto; min-height: 60vh;">
                         <div class="row">                   
@@ -192,8 +186,10 @@
                                         <table class="table table-hover">
                                             <thead>
                                               <tr class="table-secondary">
-                                                <th class="text-dark">descripcion</th>
-                                                <th class="text-dark">Acciones</th>
+                                                <th class="text-dark">Descripcion de compra</th>
+                                                <th class="text-dark">Fecha y hora </th>
+                                                <th class="text-dark">proveedor</th>
+                                                <th class="text-dark">bodega</th>
                                               </tr>
                                             </thead>
                                             <tbody id="tbVehiculos" class="table-border-bottom-0">                                      
@@ -209,81 +205,6 @@
               </div>
             <!-- / Content -->
             
-        <!-- Modal -->
-        <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalCenterTitle">Datos de la Categoria</h5>
-                    <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                    ></button>
-                </div>
-                <form id="frmvehiculo">
-                  
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col mb-3">
-                            <input hidden id="id" name="id" value="0">
-                            <label for="nameWithTitle" class="form-label">descripcion</label>
-                            <input
-                            type="text"
-                            id="descripcion"
-                            name="descripcion"
-                            class="form-control"
-                            placeholder="nombre"
-                            autocomplete="off"
-                            />
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                    Cancelar
-                    </button>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                </div>
-              </form>
-                </div>
-            </div>
-        </div>
-
-            
-          <div class="modal fade" id="mdEliminar" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalCenterTitle">Eliminar Empresa</h5>
-                    <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                    ></button>
-                </div>
-                <form id="frmGaraje">
-                  <div class="modal-body">
-                      <div class="row">
-                          <input id="idempresaE" name="idempresaE" value="0" hidden/>
-                          <div class="col mb-3">
-                             <p>Esta seguro que desea eliminar esta Categoria?</p>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                      Cancelar
-                      </button>
-                      <button type="button" onclick="Eliminar()" class="btn btn-danger">Eliminar</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-            </div>
             <div class="container-xxl flex-grow-1 container-p-y">
               <h4 hidden class="fw-semibold py-3 mb-4"><span class="text-muted fw-light">UI elements /</span> Toasts</h4>
         
@@ -417,11 +338,6 @@
                         <div class="toast-body">
                           ads
                       </div>
-        
-                      
-        
-        
-        
                       <div
                         class="bs-toast toast fade show bg-danger"
                         role="alert"
@@ -493,7 +409,7 @@
     <!-- Page JS -->
     <script src="../assets/js/dashboards-analytics.js"></script>
 
-    <script src="./js/Categorias.js"></script>
+    <script src="./js/ReporteCompra.js"></script>
     <script src="./ui/toast.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
